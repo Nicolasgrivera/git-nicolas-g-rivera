@@ -1,0 +1,533 @@
+CREATE TABLE clients (
+client_id INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+client_name VARCHAR(30)
+);
+
+CREATE TABLE products (
+product_id INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+product_name VARCHAR(40) NOT NULL,
+stock INTEGER UNSIGNED,
+price DECIMAL (10,2) UNSIGNED NOT NULL,
+brand VARCHAR(40),
+color VARCHAR(25)
+);
+
+CREATE TABLE suppliers (
+supplier_id INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+supplier_name VARCHAR(30) NOT NULL,
+supplier_adress VARCHAR(30)
+);
+
+CREATE TABLE suppliers_products (
+supplier_id INTEGER UNSIGNED NOT NULL,
+product_id INTEGER UNSIGNED NOT NULL,
+product_name VARCHAR(40) NOT NULL,
+supplier_stock INTEGER UNSIGNED,
+supplier_price DECIMAL(10,2) UNSIGNED NOT NULL,
+brand VARCHAR(25),
+color VARCHAR(25)
+);
+
+CREATE TABLE suppliers_products (
+supplier_price DECIMAL(10,2) UNSIGNED PRIMARY KEY,
+supplier_stock INTEGER UNSIGNED,
+supplier_id INTEGER UNSIGNED NOT NULL,
+product_id INTEGER UNSIGNED NOT NULL,
+product_name VARCHAR(30) NOT NULL,
+brand VARCHAR(25),
+color VARCHAR(25)
+)
+
+
+CREATE TABLE actions (
+action_id INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+action_type ENUM('venta', 'compra', 'devolucion') NOT NULL,
+client_id INTEGER UNSIGNED NOT NULL,
+product_id INTEGER UNSIGNED NOT NULL,
+supplier_id INTEGER UNSIGNED NOT NULL,
+amount INTEGER UNSIGNED NOT NULL,
+created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO clients (client_name)
+VALUES
+("Facundo Campazzo"),
+("Matias Robledo"),
+("Malena Narvaez"),
+("Julio Martinez"),
+("Valeria Puentes"),
+("Jorge Morlic"),
+("Nicolas Perez"),
+("Gaston Pablera"),
+("Jazmin Brulin"),
+("Benito Juarez"),
+("Felisa Seoane"),
+("Nadia Rebollo"),
+("Moises Comas"),
+("Jan Torres"),
+("Carlos Enrique Sevillano"),
+("Carmen Maria Abril"),
+("Claudia Checa");
+
+INSERT INTO products (product_id, product_name, stock, price, brand, color)
+VALUES
+(3, 'Tira asado 500gr', 60, 450.56, 'swift', 'none'),
+(4, 'Barra de chocolate 150gr', 250, 68.97, 'Milka', 'negro'),
+(5, 'Harina 500gr', 560, 60.15, "Los patitos", 'blanca'),
+(6, 'Leche Descremada 500ml', 230, 89.93, 'La serenisima', 'none'),
+(7, 'Azucar 500gr', 570, 74.83, 'La azucarera', 'none'),
+(8, 'Fideos 500gr', 410, 86.66, 'Marolio', 'none');
+(9, 'Salsa 350ml', 230, 70.53, 'Salsita mansita', 'none'),
+(10, 'Pollo entero', 150, 257.33, 'Los hermanos', 'none'),
+(11, 'Jamon 100gr', 203, 77.32, 'La Serenisima', 'none'),
+(12, 'Queso 100gr', 270, 120.66, 'La Serenisima', 'none'),
+(13, 'Pan 350gr', 323, 83.21, 'El sol de Galicia', 'none'),
+(14, 'Helado 500gr', 59, 230.24, 'grido', 'none'),
+(15, 'Gaseosa 2.25L', 530, 170.53, 'CocaCola', 'none'),
+(16, 'Gaseosa 2.25L', 346, 163.31, 'Pepsi', 'none'),
+(17, 'Sobre de jugo', 174, 15.55, 'Tang','none');
+(18, 'Naranja',  )
+(19, 'Berenjena')
+(20, 'Carne picada 500gr')
+(21, 'Cereales 400gr')
+(22, 'Salame 100gr')
+(23, 'Radicheta')
+(24, 'Sandia')
+(25, 'Zucchini')
+
+INSERT INTO suppliers_products (supplier_id, product_id, product_name, supplier_stock, supplier_price, brand, color)
+VALUES
+(3, 2, 'Banana', 1350, 9.32, 'La verdu', 'none'),
+(6, 1, 'Manzana', 1720, 7.83, 'La verdu', 'Roja');
+(1, 3, 'Tira asado 500gr', 800, 350.56, 'swift', 'none'),
+(1, 4, 'Barra de chocolate 150gr', 1050, 54.97, 'Milka', 'negro'),
+(3, 5, 'Harina 500gr', 1860, 47.15, 'Los patitos', 'blanca'),
+(3, 6, 'Leche Descremada 500ml', 2503, 70.93, 'La serenisima', 'none'),
+(1, 7, 'Azucar 500gr', 4320, 57.83, 'La azucarera', 'none'),
+(2, 8, 'Fideos 500gr', 5308, 59.66, 'Marolio', 'none'),
+(2, 9, 'Salsa 350ml', 4260, 58.53, 'Salsita mansita', 'none'),
+(6, 10, 'Pollo entero', 3263, 194.33, 'Los hermanos', 'none'),
+(6, 11, 'Jamon 100gr', 2301, 63.32, 'La Serenisima', 'none'),
+(6, 12, 'Queso 100gr', 2108, 97.66, 'La Serenisima', 'none'),
+(8, 13, 'Pan 350gr', 1320, 65.21, 'El sol de Galicia', 'none'),
+(7, 14, 'Helado 500gr', 1392, 189.24, 'grido', 'none'),
+(7, 15, 'Gaseosa 2.25L', 4523, 140.53, 'CocaCola', 'none'),
+(5, 16, 'Gaseosa 2.25L', 4328, 136.31, 'Pepsi', 'none'),
+(5, 17, 'Sobre de jugo', 7534, 9.55, 'Tang','none'),
+(1, 18, 'Naranja',  2131, 9.42, 'La verdu','none'),
+(1, 19, 'Berenjena', 1690, 10.48, 'La verdu', 'none'),
+(4, 20, 'Carne picada 500gr', 1300, 140.23, 'swift', 'none'),
+(7, 21, 'Cereales 400gr', 1521, 69.33,'Trix', 'multicolor'),
+(2, 22, 'Salame 100gr', 1851, 73.93, 'La Serenisima', 'none'),
+(2, 23, 'Radicheta', 1600, 30.11, 'Marolio', 'none'),
+(3, 24, 'Sandia', 1721, 83.31, 'La verdu', 'none'),
+(5, 25, 'Zucchini', 2131, 31.22, 'La verdu', 'none');
+
+-------------------------------
+INSERT INTO supplier_products (supplier_price, supplier_stock, supplier_id product_id, product_name, brand, color)
+--------------------------------
+
+INSERT INTO suppliers (supplier_name, supplier_adress)
+VALUES
+("HiperMarket S.A", "Boyaca 3215"),
+("Macro S.A", "General Belgrano 1952"),
+("Asnicar S.A", "San Martin 5320"),
+("Jumbo S.A", "Brasil 4211"),
+("Revaler S.A", "Lascano 2039"),
+("Wolfan S.A", "Terrero 3117"),
+("Perlant S.A", "San Martin 2398"),
+("Mercado Central S.A", "Juan b justo 3521");
+
+------------------------
+
+INSERT INTO suppliers_products (product_id, product_name, supplier_stock, supplier_price, brand, color)
+
+-------------------------
+
+
+
+
+
+
+
+SELECT a.action_id,
+	p.product_name,
+
+FROM actions AS a
+LEFT JOIN products as p
+	ON p.product_id = a.product_id
+
+
+----------------------------------------------------------------------------------------------------
+
+
+CREATE TABLE books (
+	book_id INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+	publisher_id INTEGER UNSIGNED NOT NULL,
+	title VARCHAR(60) NOT NULL,
+	author VARCHAR(100) NOT NULL,
+	price DECIMAL(7.3),
+	copies INTEGER UNSIGNED NOT NULL
+);
+
+
+CREATE TABLE publishers (
+	publisher_id INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+	name VARCHAR(100) NOT NULL,
+	country VARCHAR(30)
+);
+
+CREATE TABLE users (
+	user_id INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+	name VARCHAR(100) NOT NULL,
+	email VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE actions (
+	action_id INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+	book_id INTEGER UNSIGNED NOT NULL,
+	user_id INTEGER UNSIGNED NOT NULL,
+	action_type ENUM ('venta', 'prestamo', 'devolucion')
+		NOT NULL,
+	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO publishers (name, country)
+VALUES
+("Platzi", "USA"),
+("Udemy", "Colombia"),
+("Educacion IT", "Brasil"),
+("Las tres Marias", "Argentina"),
+("Santillana", "Mexico"),
+("Clint", "Venezuela");
+
+INSERT INTO users (name, email)
+VALUES
+("Ricardo", "ricardo@gmail.com"),
+("Valeria", "valeria@gmail.com"),
+("Jorge", "jorge@gmail.com"),
+("Jazmin", "jazmin@gmail.com"),
+("Leonel", "leonel@gmail.com"),
+("Martin", "martin@gmail.com"),
+("Daniela", "daniela@gmail.com"),
+("Susana", "susana@gmail.com"),
+("Tito", "tito@gmail.com"),
+("Fernando", "fernando@gmail.com");
+INSERT INTO users (name, email)
+VALUES
+("Mario", "mario@gmail.com"),
+("Roman", "roman@gmail.com"),
+("Valentina", "valentina@gmail.com"),
+("Tamara", "tamara@gmail.com"),
+("Micaela", "micaela@gmail.com");
+
+INSERT INTO books (publisher_id, title, author, price, copies)
+VALUES
+(1, "Desarrollo de vacunas", "Leopoldo German", 19.99, 5),
+(2, "Desarrollo de videojuegos", "Martin Garrix", 14.99, 10),
+(3, "Introducción a la pasteleria", "Paulina cocina", 9.99, 6),
+(4, "Pensamiento crítico", "George Bush", 14.99, 5),
+(5, "Neurología 1", "Jorge Bullrich", 24.99, 7),
+(5, "Neurología 2", "Jorge Bullrich", 24.99, 10),
+(6, "10 formas de agilizar tu trabajo", "Chanta Apellido", 4.99, 3),
+(7, "Variables en JavaScript", "Mercedes Sosa", 14.99, 12),
+(8, "Introducción a base de datos", "Gabriel Guzman", 23.99, 16),
+(6, "Nada es imposible", "Chanta Apellido", 4.99, 2),
+(9, "Aprende a Navegar", "Sailor moon", 9.99, 7),
+(10, "Pasos de tango", "Valeria Linch", 9.99, 14),
+(3, "Recetas para desayuno", "Paulina Cocina", 9.99, 10),
+(11, "Creación de API", "Benito Marley", 14.99, 15),
+(12, "Fundamentos MongoDB", "Julian Querl", 14.99, 12),
+(13, "Metodología de estudio", "Matias Insaurralde", 9.99, 21),
+(14, "Viajes en el tiempo", "Jon Titor", 29.99, 6),
+(15, "Ecuaciones simples", "Julio Profe", 14.99, 32);
+
+INSERT INTO actions (book_id, user_id, action_type)
+VALUES
+(10, 5, "venta"),
+(5, 2, "prestamo"),
+(12, 7, "devolucion"),
+(11, 3, "venta"),
+(2, 6, "venta"),
+(4, 6, "venta"),
+(10, 9, "venta"),
+(9, 7, "prestamo"),
+(11, 12, "devolucion"),
+(6, 4, "prestamo"),
+(1, 11, "venta"),
+(15, 12, "venta"),
+(5, 10, "devolucion"),
+(11, 11, "prestamo"),
+(15, 18, "venta"),
+(3, 3, "venta"),
+(15, 17, "venta"),
+(1, 7, "prestamo"),
+(8, 8, "devolucion");
+
+SELECT a.action_id AS aid,
+ 	b.title,
+  	a.action_type,
+  	u.name,
+  	b.price
+
+FROM actions AS a
+LEFT JOIN books AS b
+	ON b.book_id = a.book_id
+LEFT JOIN users as u
+	ON a.user_id = u.user_id
+WHERE a.action_type = "venta"
+
+UNION
+
+SELECT a.action_id AS aid,
+ 	b.title,
+  	a.action_type,
+  	u.name,
+  	0 as price
+
+FROM actions AS a
+LEFT JOIN books AS b
+	ON b.book_id = a.book_id
+LEFT JOIN users as u
+	ON a.user_id = u.user_id
+WHERE a.action_type != "venta"
+
+ORDER BY aid;
+
+
+INSERT INTO users (name, email)
+VALUES
+("Pedro", "pedro@gmail.com"),
+("Cubillas", "cubillas@gmail.com"),
+("Valentin", "valentin@gmail.com"),
+("Mateo", "mateo@gmail.com");
+
+-------------------------------------
+
+SELECT a.action_id AS aid,
+ 	b.title,
+  	a.action_type,
+  	u.name,
+	IF (a.action_type = 'venta', b.price, '') AS price
+
+FROM actions AS a
+LEFT JOIN books AS b
+	ON b.book_id = a.book_id
+LEFT JOIN users as u
+	ON a.user_id = u.user_id
+
+-------------------------------------
+
+
+CREATE TABLE ventas (
+venta_id INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+product_id INTEGER UNSIGNED NOT NULL,
+product_amount INTEGER UNSIGNED NOT NULL,
+client_id INTEGER UNSIGNED NOT NULL,
+created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP 
+);
+
+--SON 17 CLIENTES
+--SON 8 SUPPLIERS
+--SON 17 PRODUCTOS
+
+INSERT INTO ventas (product_id, product_amount, client_id)
+VALUES
+(2, 8, 7),
+(3, 12, 3),
+(15, 16, 17),
+(6, 5, 12),
+(1, 21, 8),
+(7, 10, 13),
+(12, 15, 11),
+(16, 6, 4),
+(11, 10, 7),
+(6, 11, 16),
+(1, 21, 5),
+(8, 11, 15),
+(17, 9, 1),
+(10, 18, 11),
+(10, 24, 3),
+(13, 6, 9),
+(11, 7, 15),
+(12, 3, 2);
+
+P ID, P Amount, C ID, 
+
+SELECT 
+v.venta_id AS v_id,
+c.client_name AS client,
+p.product_name AS producto,
+p.price as precio,
+v.product_amount AS cantidad
+
+FROM ventas AS v
+LEFT JOIN products AS p
+	ON v.product_id = p.product_id
+LEFT JOIN clients as c
+	ON v.client_id = c.client_id;
+
+
+
+SELECT 
+v.action_id AS aid,
+v.action_type AS accion,
+c.client_name AS client,
+s.supplier_name AS supplier,
+p.product_name AS producto,
+IF (v.action_type = 'venta', p.price, 0) AS price,
+v.product_amount AS cantidad,
+v.created_at AS ca
+
+FROM ventas AS v
+LEFT JOIN products AS p
+	ON v.product_id = p.product_id
+LEFT JOIN suppliers AS s
+	ON v.supplier_id = s.supplier_id
+LEFT JOIN clients as c
+	ON v.client_id = c.client_id;
+
+
+
+SELECT 
+v.action_id AS aid,
+v.action_type AS accion,
+c.client_name AS client,
+s.supplier_name AS supplier,
+p.product_name AS producto,
+IF (v.action_type = 'venta', p.price, 0) AS price,
+v.product_amount AS cantidad,
+v.created_at AS ca
+
+FROM ventas AS v
+LEFT JOIN products AS p
+	ON v.product_id = p.product_id
+LEFT JOIN suppliers AS s
+	ON v.supplier_id = s.supplier_id
+LEFT JOIN clients as c
+	ON v.client_id = c.client_id;
+
+--------------------------------------------------
+
+SELECT 
+s.supplier_name AS supplier
+c.product_amount AS product
+sp.supplier_price AS
+s.supplier_adress AS adress
+c.created_at AS created
+
+FROM compras AS c
+LEFT JOIN suppliers AS s
+	ON c.supplier_id = s.supplier_id 
+LEFT JOIN suppliers_products AS sp
+	ON sp.suppler
+
+MODIFICAR TABLA SP, NO TIENE PRIMARY KEY
+
+
+
+
+SELECT 
+v.venta_id AS v_id,
+c.client_name AS client,
+p.product_name AS producto,
+p.price as precio,
+v.product_amount AS cantidad
+
+FROM ventas AS v
+LEFT JOIN products AS p
+	ON v.product_id = p.product_id
+LEFT JOIN clients as c
+	ON v.client_id = c.client_id;
+
+--------------------------------
+
+CREATE TABLE compras (
+compra_id INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+supplier_id INTEGER UNSIGNED NOT NULL,
+product_id INTEGER UNSIGNED NOT NULL,
+product_amount INTEGER UNSIGNED NOT NULL,
+supplier_price DECIMAL(10,2) UNSIGNED NOT NULL,
+created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP 
+);
+
+--SON 8 SUPPLIERS
+--SON 17 PRODUCTOS
+
+INSERT INTO compras (product_id, product_amount, supplier_id, supplier_price)
+VALUES
+(2, 608, 1, 9.32),
+(3, 1821, 4, 350.56),
+(15, 1622, 6, 140.53),
+(6, 2008, 3, 70.93),
+(1, 1450, 8, 7.83),
+(7, 1230, 2, 57.83),
+(12, 1555, 3, 97.66),
+(16, 1216, 4, 136.31),
+(11, 1440, 7, 63.32),
+(6, 1290, 8, 70.93),
+(1, 2133, 1, 7.83),
+(8, 1182, 2, 59.66),
+(17, 903, 5, 9.55),
+(10, 504, 5, 194.33),
+(10, 2214, 3, 194.33),
+(13, 1620, 2, 65.21),
+(11, 1835, 5, 63.32),
+(12, 3024, 6, 97.66);
+
+select product_name,
+	supplier_price
+
+FROM suppliers_products
+
+ORDER BY product_id;
+
+
+	SELECT 
+co.compra_id AS co_id,
+s.supplier_name as proveedor,
+p.product_name as product,
+co.supplier_price as price,
+co.product_amount as amount,
+SUM(co.supplier_price * co.product_amount)
+
+FROM compras AS co
+LEFT JOIN products AS p
+	ON co.product_id = p.product_id
+LEFT JOIN suppliers as s
+	ON co.supplier_id = s.supplier_id
+LEFT JOIN suppliers_products as sp
+	ON co.supplier_price = sp.supplier_price
+	GROUP BY co_id
+
+
+	SELECT 
+v.venta_id AS v_id,
+c.client_name AS client,
+p.product_name AS producto,
+p.price as precio,
+v.product_amount AS cantidad
+
+FROM ventas AS v
+LEFT JOIN products AS p
+	ON v.product_id = p.product_id
+LEFT JOIN clients as c
+	ON v.client_id = c.client_id;
+
+
+		SELECT 
+co.compra_id AS co_id,
+IF(s.supplier_name = 'HiperMarket S.A', 'HiperMarket S.A', 'other') as proveedor,
+p.product_name as product,
+co.supplier_price as price,
+co.product_amount as amount,
+SUM(co.supplier_price * co.product_amount)
+
+FROM compras AS co
+LEFT JOIN products AS p
+	ON co.product_id = p.product_id
+LEFT JOIN suppliers as s
+	ON co.supplier_id = s.supplier_id
+LEFT JOIN suppliers_products as sp
+	ON co.supplier_price = sp.supplier_price
+	GROUP BY co_id
